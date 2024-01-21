@@ -1,5 +1,6 @@
 ---
 Language:        Cpp
+
 AlignArrayOfStructures: Left
 AlignConsecutiveAssignments: false
 AlignConsecutiveBitFields: false
@@ -30,7 +31,7 @@ BraceWrapping:
   SplitEmptyFunction: true
   SplitEmptyRecord: true
   SplitEmptyNamespace: true
-BreakBeforeBraces: Custom
+BreakBeforeBraces: Allman
 SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
