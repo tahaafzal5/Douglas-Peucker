@@ -1,19 +1,14 @@
 #include "plotting.h"
 #include <cmath>
 #include <matplot/matplot.h>
+#include <string>
+#include <unistd.h>
 
-Plotting::Plotting(double epsilon) : m_epsilon(epsilon), m_marker(".")
+Plotting::Plotting(double epsilon, double sleepDuration)
+    : m_epsilon(epsilon), m_marker("."), m_sleepDuration(sleepDuration)
 {
-  for (double x = 0.0; x <= 5.0; x += 0.1)
-  {
-    m_xPoints.push_back(x);
-
-    double y = std::exp(-x) * std::cos(2 * M_PI * x);
-    m_yPoints.push_back(y);
-  }
 }
 
-// Destructor implementation
 Plotting::~Plotting()
 {
 }
@@ -23,9 +18,28 @@ void Plotting::setMarker(const char* marker)
   m_marker = marker;
 }
 
+void Plotting::collectXPoints(std::vector<double> xPoints)
+{
+  m_xPointsVector.push_back(xPoints);
+
+  std::vector<double> yPoints;
+  for (const double x : xPoints)
+  {
+    double y = std::exp(-x) * std::cos(2 * M_PI * x);
+    yPoints.push_back(y);
+  }
+
+  this->collectYPoints(yPoints);
+}
+
+void Plotting::collectYPoints(std::vector<double> yPoints)
+{
+  m_yPointsVector.push_back(yPoints);
+}
+
 void Plotting::plot()
 {
-  if (m_xPoints.empty() || m_yPoints.empty())
+  if (m_xPointsVector.empty() || m_yPointsVector.empty())
   {
     std::cerr << "No points\n";
     return;
@@ -37,7 +51,16 @@ void Plotting::plot()
     return;
   }
 
-  matplot::plot(m_xPoints, m_yPoints).get()->marker(m_marker);
+  for (int i = 0; i < m_xPointsVector.size(); i++)
+  {
+    std::string title = "Plot " + std::to_string(i);
+    matplot::title(title);
+
+    matplot::plot(m_xPointsVector.at(i), m_yPointsVector.at(i))
+        .get()
+        ->marker(m_marker);
+    sleep(m_sleepDuration);
+  }
 
   matplot::show();
 }
