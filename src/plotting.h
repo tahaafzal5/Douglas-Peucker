@@ -17,6 +17,8 @@ public:
 private:
   const char* m_marker;
   double m_sleepDuration;
+
+  void printPointCount(const std::vector<std::vector<Point>>& pointsVector);
 };
 
 #endif // PLOTTING_H

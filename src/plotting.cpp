@@ -38,9 +38,19 @@ void Plotting::plot(const std::vector<std::vector<Point>>& pointsVector)
 
     std::string title = "Plot " + std::to_string(i);
     matplot::title(title);
+    this->printPointCount(pointsVector);
     matplot::plot(xValues, yValues).get()->marker(m_marker);
     sleep(m_sleepDuration);
   }
 
   matplot::show();
+}
+
+void Plotting::printPointCount(
+    const std::vector<std::vector<Point>>& pointsVector)
+{
+  for (int i = 0; i < pointsVector.size(); i++)
+  {
+    printf("Plot %d has %d points\n", i, pointsVector.at(i).size());
+  }
 }
