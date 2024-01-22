@@ -1,5 +1,6 @@
 #include "DouglasPeucker.h"
 #include "plotting.h"
+#include <iostream>
 #include <math.h>
 
 #include <vector>
@@ -39,14 +40,28 @@ void DouglasPeucker::collectPoints(const std::vector<Point>& points)
   m_pointsVector.push_back(points);
 }
 
-double DouglasPeucker::findFurthestDistance(const Point& firstPoint,
-                                            const Point& lastPoint)
+double DouglasPeucker::findFurthestDistance(
+    const std::vector<std::vector<Point>>& allPoints, const Point& firstPoint,
+    const Point& lastPoint)
 {
-  double furthestDistance = 0.0;
+  double furthestDistance = -1.0;
 
-  //   for (const auto& point : m_allPoints)
-  //   {
-  //   }
+  for (const auto& point : allPoints)
+  {
+  }
 
   return furthestDistance;
+}
+
+double DouglasPeucker::distanceBetweenPointAndLine(Point point,
+                                                   Point linePoint1,
+                                                   Point linePoint2)
+{
+  double numerator =
+      std::abs((linePoint2.x - linePoint1.x) * (linePoint1.y - point.y) -
+               (linePoint1.x - point.x) * (linePoint2.y - linePoint1.y));
+  double denominator = sqrt(pow((linePoint2.x - linePoint1.x), 2) +
+                            pow((linePoint2.y - linePoint1.y), 2));
+
+  return numerator / denominator;
 }

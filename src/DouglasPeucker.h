@@ -18,7 +18,10 @@ private:
 
   void initializeAllPoints();
   void collectPoints(const std::vector<Point>& points);
-  double findFurthestDistance(const Point& firstPoint, const Point& lastPoint);
+  double findFurthestDistance(const std::vector<std::vector<Point>>& allPoints,
+                              const Point& firstPoint, const Point& lastPoint);
+  double distanceBetweenPointAndLine(Point point, Point linePoint1,
+                                     Point linePoint2);
 };
 
 #endif // DOUGLASPEUCKER_H
