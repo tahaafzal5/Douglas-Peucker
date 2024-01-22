@@ -20,8 +20,6 @@ DouglasPeucker::~DouglasPeucker()
 
 void DouglasPeucker::initializeAllPoints()
 {
-  std::vector<Point> points;
-
   for (double x = 0.0; x <= 5.0; x += 0.01)
   {
     Point point;
@@ -30,25 +28,17 @@ void DouglasPeucker::initializeAllPoints()
     point.x = x;
     point.y = y;
 
-    points.push_back(point);
+    m_pointsVector.push_back(point);
   }
-  this->collectPoints(points);
 }
 
-void DouglasPeucker::collectPoints(const std::vector<Point>& points)
-{
-  m_pointsVector.push_back(points);
-}
-
-double DouglasPeucker::findFurthestDistance(
-    const std::vector<std::vector<Point>>& allPoints, const Point& firstPoint,
-    const Point& lastPoint)
+double DouglasPeucker::calculate(const std::vector<Point>& allPoints,
+                                 const int a, const int b)
 {
   double furthestDistance = -1.0;
 
-  for (const auto& point : allPoints)
-  {
-  }
+  //   Point start = allPoints.at(a);
+  //   Point end = allPoints.at(b);
 
   return furthestDistance;
 }

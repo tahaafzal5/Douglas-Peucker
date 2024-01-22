@@ -12,14 +12,13 @@ public:
   ~DouglasPeucker();
 
 private:
-  std::vector<std::vector<Point>> m_pointsVector;
+  std::vector<Point> m_pointsVector;
   double m_epsilon;
   Plotting* m_plotter;
 
   void initializeAllPoints();
-  void collectPoints(const std::vector<Point>& points);
-  double findFurthestDistance(const std::vector<std::vector<Point>>& allPoints,
-                              const Point& firstPoint, const Point& lastPoint);
+  double calculate(const std::vector<Point>& allPoints, const int a,
+                   const int b);
   double distanceBetweenPointAndLine(Point point, Point linePoint1,
                                      Point linePoint2);
 };
