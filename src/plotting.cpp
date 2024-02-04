@@ -45,5 +45,5 @@ void Plotting::plot(const std::vector<Point>& pointsVector)
 
 void Plotting::printPointCount(const std::vector<Point>& pointsVector)
 {
-  printf("This plot has %d points\n", pointsVector.size());
+  printf("This plot has %lu points\n", pointsVector.size());
 }
